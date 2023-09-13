@@ -1,34 +1,55 @@
 const DefaultProps = {
     container: {
-        grow: 'down',
-        width: '100%', //expand // fit to sum offsetheight of all inner elements
-        height: '100%',
-        padding: '0px',
-        allowIntersect: false, // true, [],
-        onGuide: {
-            horizontalGuideline: '0%',
-            verticalGuideline: '0%',
-            breakBefore: false,
-            breakAfter: false,
-            guidelineOffset: '0px',
-            collapse: false,
+        active: true, // boolean value
+        grow: 'down', // string that matches: /^\s*up\s*$/, /^\s*down\s*$/, /^\s*left\s*$/, or /^\s*right\s*$/
+        width: '100%', // string that matches: /^\s*[-+]?\s*([1-9]\d*|0)\s*(px)?\s*$/, /^\s*((0|[1-9]|[1-9]\d)(.\d+)?|100(.0+))\s*\%\s*$/, /^\s*expand\s*$/, or /^\s*fit\s*$/
+        height: '100%', // string that matches: /^\s*[-+]?\s*([1-9]\d*|0)\s*(px)?\s*$/, /^\s*((0|[1-9]|[1-9]\d)(.\d+)?|100(.0+))\s*\%\s*$/, /^\s*expand\s*$/, or /^\s*fit\s*$/
+        padding: {
+            sibling: '0', // string that matches: /^\s*[-+]?\s*([1-9]\d*|0)\s*(px)?\s*$/ or /^\s*((0|[1-9]|[1-9]\d)(.\d+)?|100(.0+))\s*\%\s*$/
+            parent: '0', // string that matches: /^\s*[-+]?\s*([1-9]\d*|0)\s*(px)?\s*$/ or /^\s*((0|[1-9]|[1-9]\d)(.\d+)?|100(.0+))\s*\%\s*$/
+        },
+        allowIntersect: false, // boolean value, array of integers that are 0 or greater
+        pivot: {
+            horizontal: '50%', // string that matches: /^\s*[-+]?\s*([1-9]\d*|0)\s*(px)?\s*$/ or /^\s*((0|[1-9]|[1-9]\d)(.\d+)?|100(.0+))\s*\%\s*$/
+            vertical: '50%', // string that matches: /^\s*[-+]?\s*([1-9]\d*|0)\s*(px)?\s*$/ or /^\s*((0|[1-9]|[1-9]\d)(.\d+)?|100(.0+))\s*\%\s*$/
+        },
+        guideBehavior: {
+            insert: {
+                reverseDirection: false, // boolean value
+                startOffset: '0' // string that matches: /^\s*[-+]?\s*([1-9]\d*|0)\s*(px)?\s*$/ or /^\s*((0|[1-9]|[1-9]\d)(.\d+)?|100(.0+))\s*\%\s*$/
+            },
+            break: {
+                before: false, // boolean value
+                after: false // boolean value
+            },
+            keepWith: {
+                previous: false,  // boolean value
+                next: false  // boolean value
+            },
+            breakChildrenBeforeSelf: false, // boolean value
+        },
+        defaultGuide: {
+            horizontal: {},
+            vertical: {}
         },
     },
     guide: {
-        direction: 'right',
+        active: true, // boolean
+        direction: 'right', // up, down, left, or right
         location: {
-            top: '0%',
-            right: '0%',
+            horizontal: '0', // % or px
+            vertical: '0', // % or px
         },
-        containerOffset: '0%',
-        whitespace: '50%', // justify
+        containerOffset: '0',
+        whitespace: '50%', // 'justify'
         padding: {
             before: '10px',
             after: '10px'
         },
         break: {
-            nonIntersecting: false,
-            distance: '10px',
+            encounteringContainer: false,
+            rowLike: false,
+            spacing: '0', // % or px
         },
     }
 }
